@@ -14,4 +14,6 @@ public interface UtilKey {
 	String PASSWORD="password";
 	String PASSWORD_RIPETUTA="passwordRipetuta";
 	String PROMUOVI="promuovi";
+	String MESSAGGIO="msg";
+	String UTENTE = "utenteLoggato";
 }

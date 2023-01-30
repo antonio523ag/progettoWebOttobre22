@@ -19,8 +19,7 @@ class UtenteDAOJdbc implements UtenteDAO {
 	
 	@Override
 	public Utente login(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Utente("Antonio", "Grillo", "root", "toor", 1);
 	}
 
 	@Override

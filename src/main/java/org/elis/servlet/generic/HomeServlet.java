@@ -6,7 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.elis.model.Utente;
+import org.elis.util.UtilJSPPath;
+import org.elis.util.UtilKey;
 import org.elis.util.UtilServletPath;
 
 @WebServlet("/"+UtilServletPath.HOME)
@@ -15,7 +19,13 @@ public class HomeServlet extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session=request.getSession();
+		Utente u=(Utente)session.getAttribute(UtilKey.UTENTE);
+		if(u==null)request.getRequestDispatcher(UtilJSPPath.HOME).forward(request, response);
+		else {
+			if(u.getRuolo()==0)response.sendRedirect(request.getContextPath()+"/"+UtilServletPath.HOME_UTENTE);
+			else response.sendRedirect(request.getContextPath()+"/"+UtilServletPath.HOME_ADMIN);
+		}
 	}
 
 }

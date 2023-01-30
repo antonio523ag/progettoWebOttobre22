@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class Film {
+	private long id;
 	private String titolo;
 	private Genere genere;
 	private int anno;
@@ -28,6 +29,10 @@ public class Film {
 	}
 	
 	public Film() {
+	}
+	
+	public long getId() {
+		return id;
 	}
 
 	public String getTitolo() {
@@ -64,6 +69,10 @@ public class Film {
 
 	public Utente getAutoreModifica() {
 		return autoreModifica;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public void setTitolo(String titolo) {

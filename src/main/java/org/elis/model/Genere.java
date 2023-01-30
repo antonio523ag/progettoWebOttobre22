@@ -1,8 +1,11 @@
 package org.elis.model;
 
+import java.util.List;
+
 public class Genere {
 	private long id;
 	private String genere;
+	private List<Film> film;
 	
 	public Genere(long id, String genere) {
 		this.id = id;
@@ -19,6 +22,10 @@ public class Genere {
 	public String getGenere() {
 		return genere;
 	}
+	
+	public List<Film> getFilm() {
+		return film;
+	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -26,6 +33,10 @@ public class Genere {
 
 	public void setGenere(String genere) {
 		this.genere = genere;
+	}
+	
+	public void setFilm(List<Film> film) {
+		this.film = film;
 	}
 	
 	
