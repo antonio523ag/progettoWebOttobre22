@@ -1,5 +1,8 @@
 package org.elis.dao.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.elis.dao.intefaces.UtenteDAO;
@@ -19,13 +22,23 @@ class UtenteDAOJdbc implements UtenteDAO {
 	
 	@Override
 	public Utente login(String email, String password) {
-		return new Utente("Antonio", "Grillo", "root", "toor", 1);
+		return null;
 	}
 
 	@Override
 	public boolean inserisci(Utente u) {
-		// TODO Auto-generated method stub
-		return false;
+		String query="insert into utente(nome,cognome,email,password,ruolo) values (?,?,?,?,?)";
+		try(Connection c=getConnection();PreparedStatement ps=c.prepareStatement(query)){
+			ps.setString(1, u.getNome());
+			ps.setString(2, u.getCognome());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getPassword());
+			ps.setInt(5, u.getRuolo());
+			return ps.executeUpdate()==1;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

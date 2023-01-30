@@ -1,6 +1,8 @@
 package org.elis.dao.jdbc;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import org.elis.dao.DaoFactory;
 import org.elis.dao.intefaces.FilmDAO;
@@ -24,8 +26,14 @@ public class JdbcDAOFactory extends DaoFactory {
 		return GenereDAOJdbc.getInstance();
 	}
 	
-	protected static Connection getConnection() {
-		return null;
+	protected static Connection getConnection() throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/elisstreaming?serverTimezone=Europe/Rome", "root", "toor");
 	}
 
 }
